@@ -8,10 +8,10 @@ public class CharacterSelectPresenter : MonoBehaviour {
 
     [SerializeField] private Button AliciaButton;
 
-	// Use this for initialization
+	// Use this for initialization  
 	void Start () {
 
-        var characterConfig = CharacterConfigComponent.Instance;
+        var characterConfig = CharacterConfigComponent.InstanceAlicia;
 
         var AliciaStream = AliciaButton.OnClickAsObservable().Select(_ => "AliciaSolid");
 
