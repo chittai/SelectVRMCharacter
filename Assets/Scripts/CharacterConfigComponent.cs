@@ -5,30 +5,23 @@ using UniRx;
 
 public class CharacterConfigComponent : MonoBehaviour {
 
+    /// <summary>
+    /// 変更後のキャラクター名
+    /// </summary>
     public ReactiveProperty<string> charaName = new ReactiveProperty<string>();
 
-    private static CharacterConfigComponent _instance_Alicia = new CharacterConfigComponent();
-    private static CharacterConfigComponent _instance_Magurona = new CharacterConfigComponent();
-    private static CharacterConfigComponent _instance_UnityChan = new CharacterConfigComponent();
+    /// <summary>
+    /// 変更前のキャラクター名
+    /// </summary>
+    public ReactiveProperty<string> beforeCharaName = new ReactiveProperty<string>();
 
+    private static CharacterConfigComponent instance = new CharacterConfigComponent();
+    
     private CharacterConfigComponent() { }
 
-    /// <summary>
-    /// 今回はキャラの作成を3つに限定している
-    /// </summary>
-    public static CharacterConfigComponent InstanceAlicia
+    public static CharacterConfigComponent Instance
     {
-        get { return _instance_Alicia; }
-    }
-
-    public static CharacterConfigComponent InstanceMagurona
-    {
-        get { return _instance_Magurona; }
-    }
-
-    public static CharacterConfigComponent InstanceUnityChan
-    {
-        get { return _instance_UnityChan; }
+        get { return instance; }
     }
 
 

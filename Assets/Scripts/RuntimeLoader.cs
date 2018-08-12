@@ -5,8 +5,8 @@ using VRM;
 using UniRx;
 
 public class RuntimeLoader : MonoBehaviour {
-    
-    public static async void LoadVrm(string name)
+
+    public async void LoadVrm(string name)
     {
         var path = Application.streamingAssetsPath + "/" + name + ".vrm";
 
@@ -17,6 +17,8 @@ public class RuntimeLoader : MonoBehaviour {
         var gameObject = await VRMImporter.LoadVrmAsync(www.bytes);
 
         gameObject.transform.position = new Vector3(1, 1, 1);
+
+        gameObject.name = name;
 
     }
 }

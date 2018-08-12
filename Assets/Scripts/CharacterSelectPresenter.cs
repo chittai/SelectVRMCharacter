@@ -7,30 +7,68 @@ using UnityEngine.UI;
 public class CharacterSelectPresenter : MonoBehaviour {
 
     [SerializeField] private Button AliciaButton;
+    [SerializeField] private Button MaguronaButton;
+    [SerializeField] private Button UnitychanButton;
+    
+    // Use this for initialization  
+    void Start () {
 
-	// Use this for initialization  
-	void Start () {
-
-        var characterConfig = CharacterConfigComponent.InstanceAlicia;
+        var characterConfig = CharacterConfigComponent.Instance;
+        var characterChange = new CharacterChange();
 
         var AliciaStream = AliciaButton.OnClickAsObservable().Select(_ => "AliciaSolid");
+        var MaguronaStream = MaguronaButton.OnClickAsObservable().Select(_ => "Magurona");
+        var UnitychanStream = UnitychanButton.OnClickAsObservable().Select(_ => "Unitychan");
 
-        ///<Summary>
-        ///Model -> View
-        ///</Summary>
+        ///<summary>
+        ///Model -> View　新しいキャラを表示させる
+        ///</summary>
         characterConfig.charaName.Subscribe(name =>
         {
-            RuntimeLoader.LoadVrm(name);
+            characterChange.CharacterChangeObservable(name).Subscribe( x =>
+            {
+                Debug.Log(x);
+            });
         });
 
+        characterConfig.beforeCharaName.Subscribe(name =>
+        {
+            var gameObject = GameObject.Find(name);
+            Destroy(gameObject);
+        });
 
-        ///<Summary>
+        ///<summary>
         ///View -> Model
-        ///</Summary>
-        AliciaStream.Subscribe(name => characterConfig.charaName.Value = name);
-        
-	}
-	
+        ///</summary>
+        AliciaStream.Subscribe(name => 
+       {
+           if (characterConfig.charaName.Value != null)
+           {
+               characterConfig.beforeCharaName.Value = characterConfig.charaName.Value;
+           }
+           characterConfig.charaName.Value = name;
+       });
+
+        MaguronaStream.Subscribe(name =>
+        {
+            if (characterConfig.charaName.Value != null)
+            {
+                characterConfig.beforeCharaName.Value = characterConfig.charaName.Value;
+            }
+            characterConfig.charaName.Value = name;
+        });
+
+        UnitychanStream.Subscribe(name =>
+        {
+            if (characterConfig.charaName.Value != null)
+            {
+                characterConfig.beforeCharaName.Value = characterConfig.charaName.Value;
+            }
+            characterConfig.charaName.Value = name;
+        });
+
+    }
+
 	// Update is called once per frame
 	void Update () {
 		

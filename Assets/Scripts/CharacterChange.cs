@@ -1,11 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public class CharacterChange : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public IObservable<string> CharacterChangeObservable(string name)
+    {
+        return Observable.Create<string>(observer =>
+        {
+            var rl = new RuntimeLoader();
+
+            rl.LoadVrm(name);
+
+            observer.OnNext(name);
+            observer.OnCompleted();
+            
+            return Disposable.Empty;
+        });
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
