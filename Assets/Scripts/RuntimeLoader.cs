@@ -4,21 +4,25 @@ using UnityEngine;
 using VRM;
 using UniRx;
 
-public class RuntimeLoader : MonoBehaviour {
-
-    public async void LoadVrm(string name)
+namespace selector
+{
+    public class RuntimeLoader : MonoBehaviour
     {
-        var path = Application.streamingAssetsPath + "/" + name + ".vrm";
 
-        var www = new WWW(path);
+        public async void LoadVrm(string name)
+        {
+            var path = Application.streamingAssetsPath + "/" + name + ".vrm";
 
-        await www;
+            var www = new WWW(path);
 
-        var gameObject = await VRMImporter.LoadVrmAsync(www.bytes);
+            await www;
 
-        gameObject.transform.position = new Vector3(1, 1, 1);
+            var gameObject = await VRMImporter.LoadVrmAsync(www.bytes);
 
-        gameObject.name = name;
+            gameObject.transform.position = new Vector3(1, 1, 1);
 
+            gameObject.name = name;
+
+        }
     }
 }
