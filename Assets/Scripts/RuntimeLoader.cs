@@ -23,6 +23,13 @@ namespace selector
 
             gameObject.name = name;
 
+            //DefaultのAnimation
+            var addAnimation = new AddAnimation();
+            addAnimation.AddAnimationController(gameObject);
+
+            //Running用のスクリプトを追加する
+            gameObject.AddComponent<CharacterMove>();
+
         }
     }
 }

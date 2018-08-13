@@ -31,9 +31,10 @@ namespace selector
             characterConfig.charaName.Subscribe(name =>
             {
                 characterChange.CharacterChangeObservable(name).Subscribe(x =>
-           {
+                {
                     Debug.Log(x);
                 });
+
             });
 
             ///<summary>
@@ -76,5 +77,6 @@ namespace selector
                 characterConfig.charaName.Value = name;
             });
         }
+
     }
 }
