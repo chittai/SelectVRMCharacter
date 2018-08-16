@@ -9,13 +9,15 @@ namespace selector {
     
         public void SetValueBlendShapeToSurprised()
         {
-            var proxy = GetComponent<VRMBlendShapeProxy>();
+            GameObject gameObject = GameObject.Find("AliciaSolid");
 
-            proxy.SetValue(BlendShapePreset.Blink, 1.0f);
+            var proxy = gameObject.GetComponent<VRMBlendShapeProxy>();
 
             Task.Delay(1000);
 
-            proxy.SetValue(BlendShapePreset.Blink, 0);
+            proxy.SetValue(BlendShapePreset.Blink, 1.0f);
+            
+            //proxy.SetValue(BlendShapePreset.Blink, 0);
 
         }
     }

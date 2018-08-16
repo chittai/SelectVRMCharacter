@@ -5,18 +5,18 @@ using UniRx;
 
 namespace selector { 
     public class BlendShapeConponemts : MonoBehaviour {
-    
+
+        public ReactiveProperty<string> blendShape = new ReactiveProperty<string>();
+
         private BlendShapeConponemts() { }
     
-        private BlendShapeConponemts instance = new BlendShapeConponemts();
+        private static BlendShapeConponemts instance = new BlendShapeConponemts();
     
-        public ReactiveProperty<string> blendShape = new ReactiveProperty<string>();
-        
     	// Use this for initialization
     
         public static BlendShapeConponemts Instance
         {
-            get {return Instance;}
+            get {return instance;}
         }
     }
 }

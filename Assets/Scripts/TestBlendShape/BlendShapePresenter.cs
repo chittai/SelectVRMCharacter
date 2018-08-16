@@ -20,12 +20,14 @@ namespace selector
             //Model - View
             blendShapeConfig.blendShape.Subscribe(_ =>
             {
+                Debug.Log(blendShapeConfig.blendShape.Value);
                 setValueBlendShape.SetValueBlendShapeToSurprised();
             });
 
             //View - Model
             SurprisedStream.Subscribe(_ => 
             {
+                Debug.Log("test");
                 blendShapeConfig.blendShape.Value = "surprise";
             });
 
