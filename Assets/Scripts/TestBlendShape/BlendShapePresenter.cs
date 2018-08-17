@@ -15,24 +15,25 @@ namespace selector
 
             var SurprisedStream = SurprisedButton.OnClickAsObservable();
 
+
+
             var setValueBlendShape = new SetValueBlendShape();
 
             //Model - View
-            blendShapeConfig.blendShape.Subscribe(_ =>
+            blendShapeConfig.blendShape
+                .SkipLatestValueOnSubscribe()
+                .Subscribe(_ =>
             {
-                Debug.Log(blendShapeConfig.blendShape.Value);
                 setValueBlendShape.SetValueBlendShapeToSurprised();
             });
 
             //View - Model
             SurprisedStream.Subscribe(_ => 
             {
-                Debug.Log("test");
                 blendShapeConfig.blendShape.Value = "surprise";
             });
 
 
         }
-    	
     }
 }

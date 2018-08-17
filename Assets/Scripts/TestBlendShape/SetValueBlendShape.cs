@@ -13,12 +13,25 @@ namespace selector {
 
             var proxy = gameObject.GetComponent<VRMBlendShapeProxy>();
 
-            Task.Delay(1000);
+            //Task.Delay(1000);
 
-            proxy.SetValue(BlendShapePreset.Blink, 1.0f);
-            
-            //proxy.SetValue(BlendShapePreset.Blink, 0);
+            StartCoroutine("BlinkCoroutine",proxy);
+        }
 
+
+        IEnumerator BlinkCoroutine(VRMBlendShapeProxy proxy)
+        {
+            float blinkParameter = 0;
+            blinkParameter = Mathf.Clamp01(blinkParameter);
+
+            while (blinkParameter <= 1)
+            {
+                proxy.SetValue(BlendShapePreset.Blink, Mathf.Lerp(0,1.0f,blinkParameter));
+                yield return null;
+
+                blinkParameter += Time.deltaTime;
+
+            }
         }
     }
 }
