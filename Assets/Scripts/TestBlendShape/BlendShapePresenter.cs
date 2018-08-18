@@ -15,9 +15,9 @@ namespace selector
 
             var SurprisedStream = SurprisedButton.OnClickAsObservable();
 
+            GameObject obj = new GameObject("GameObject");
 
-
-            var setValueBlendShape = new SetValueBlendShape();
+            SetValueBlendShape setValueBlendShape = obj.AddComponent<SetValueBlendShape>();
 
             //Model - View
             blendShapeConfig.blendShape

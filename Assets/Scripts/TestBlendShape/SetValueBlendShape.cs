@@ -26,12 +26,12 @@ namespace selector {
 
             while (blinkParameter <= 1)
             {
-                proxy.SetValue(BlendShapePreset.Blink, Mathf.Lerp(0,1.0f,blinkParameter));
+                proxy.SetValue(BlendShapePreset.Sorrow, Mathf.Lerp(0,1.0f,blinkParameter * 15));
                 yield return null;
 
                 blinkParameter += Time.deltaTime;
-
             }
+
         }
     }
 }
